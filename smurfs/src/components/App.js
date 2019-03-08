@@ -10,7 +10,10 @@ import { getSmurfs } from "../actions";
 class App extends React.Component {
     // constructor() {
     //   super();
-      state = {  newToDo: '' };
+      state = {  name: '',
+                 age: "",
+                 height: ''
+              };
    
 
     componentDidMount() {
@@ -21,16 +24,19 @@ class App extends React.Component {
     addSmurf = e => {
         e.preventDefault();
         console.log(`In addSmurf method`);
-        this.props.addToDo(this.state.newToDo);
-        this.setState({ newToDo: '' });
+        this.props.addsmurf(this.state.newToDo);
+        this.setState( {  name: '',
+                          age: "",
+                          height: ''  
+                      });
         console.log(`State is newToDo: ${this.state.newToDo}`);
         
     } //end addMember()
 
     handleChanges = e => {
         //e.preventDefault();
-        this.setState({  newToDo: e.target.value   });
-        //console.log(`In handleChanges method, ${e.target.value}`);
+        this.setState({  [e.target.name]: e.target.value   });
+        console.log(`In handleChanges method, ${e.target.value} ${this.state.name}`);
     }
 
     render() {
@@ -38,20 +44,38 @@ class App extends React.Component {
           <div>         
             <div className="smurfList">
               { /*<CharacterList smurfs={this.props.smurfs} />*/}
-              { this.props.smurfs.map( smurf => { return <h2>{smurf.name}</h2> } ) }
+              { this.props.smurfs.map( smurf => { return <div><h2>{smurf.name}</h2> <p>Age: {smurf.age}</p><p>Height: {smurf.height}</p></div> } ) }
             </div>
       
 
              <div>   
+               <form onSubmit = {this.addSmurf}>
                 <input
                      type="text"
-                     name="newSmurf"
-                     value={this.state.newToDo}
+                     name="name"
+                     value={this.state.name}
                      onChange={this.handleChanges}
-                     placeholder="Add new smurf"
+                     placeholder="name"
+                /> 
+                <input
+                     type="text"
+                     name="age"
+                     value={this.state.age}
+                     onChange={this.handleChanges}
+                     placeholder="age"
+                /> 
+                <input
+                     type="text"
+                     name="height"
+                     value={this.state.height}
+                     onChange={this.handleChanges}
+                     placeholder="height"
                 /> 
 
-                <button onClick={this.addSmurf}>Add To Do Task</button>
+
+                </form>
+
+                <button onClick={this.addSmurf}>Add New Smurf</button>
              </div>
            </div>   
         );

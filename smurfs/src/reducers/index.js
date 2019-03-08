@@ -35,6 +35,7 @@ export default  (state = initialState, action) => {
     case FETCHING:
       return {
           fetching: true,
+          adding: false,
           smurfs: [],
           error: ''
       };
@@ -43,6 +44,7 @@ export default  (state = initialState, action) => {
     case FETCHING_SUCCESS:
     return {
       fetching: false,
+      adding: false,
       smurfs: action.payload,
       error: ''
   };
@@ -51,6 +53,7 @@ export default  (state = initialState, action) => {
     case FETCHING_FAILURE:
     return {
       fetching: false,
+      adding: false,
       smurfs: [],
       error: action.payload
   };
@@ -58,6 +61,7 @@ export default  (state = initialState, action) => {
     case ADDING:
      return {
       adding: true,
+      fetching: false,
       smurfs: [],
       error: ''
     };
@@ -66,6 +70,7 @@ export default  (state = initialState, action) => {
     case ADDING_SUCCESS:
     return {
       adding: false,
+      fetching: false,
       smurfs: action.payload,
       error: ''
    };
@@ -74,6 +79,7 @@ export default  (state = initialState, action) => {
     case ADDING_FAILURE:
     return {
       adding: false,
+      fetching: false,
       smurfs: [],
       error: action.payload
     };
