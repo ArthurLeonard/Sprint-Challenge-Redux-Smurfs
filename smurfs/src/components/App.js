@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 // import connect from 'react-redux';
 // import React from 'react';
 import { getSmurfs } from "../actions";
+import { addSmurff }  from "../actions";
 
 class App extends React.Component {
     // constructor() {
@@ -24,12 +25,18 @@ class App extends React.Component {
     addSmurf = e => {
         e.preventDefault();
         console.log(`In addSmurf method`);
-        this.props.addsmurf(this.state.newToDo);
+        const newSmurf = {
+            name: this.state.name,
+            age: this.state.age,
+            height: this.state.height
+    
+        };
+        this.props.addSmurff(newSmurf);
         this.setState( {  name: '',
                           age: "",
                           height: ''  
                       });
-        console.log(`State is newToDo: ${this.state.newToDo}`);
+        console.log(`State is : ${this.state.name}`);
         
     } //end addMember()
 
@@ -95,5 +102,5 @@ const mapStateToProps = state => {
   };
 };
 
-  export default connect(mapStateToProps,{ getSmurfs })( App);
+  export default connect(mapStateToProps,{ getSmurfs, addSmurff })( App);
 
