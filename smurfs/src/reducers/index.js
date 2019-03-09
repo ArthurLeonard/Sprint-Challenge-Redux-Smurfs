@@ -16,7 +16,7 @@
 
 
 import { ADDING, ADDING_SUCCESS, ADDING_FAILURE, FETCHING, FETCHING_SUCCESS, FETCHING_FAILURE } from "../actions";
-
+import { DELETING, DELETING_SUCCESS, DELETING_FAILURE} from "../actions";
 
 
 const initialState = {
@@ -24,7 +24,7 @@ const initialState = {
   fetching: false,
   adding: false,
   //updatingSmurf: false,
-  //deletingSmurf: false,
+  deletingSmurf: false,
   error: null
 }
 
@@ -36,6 +36,8 @@ export default  (state = initialState, action) => {
       return {
           fetching: true,
           adding: false,
+          deletingSmurf: false,
+
           smurfs: [],
           error: ''
       };
@@ -45,6 +47,8 @@ export default  (state = initialState, action) => {
     return {
       fetching: false,
       adding: false,
+      deletingSmurf: false,
+
       smurfs: action.payload,
       error: ''
   };
@@ -54,6 +58,8 @@ export default  (state = initialState, action) => {
     return {
       fetching: false,
       adding: false,
+      deletingSmurf: false,
+
       smurfs: [],
       error: action.payload
   };
@@ -62,6 +68,8 @@ export default  (state = initialState, action) => {
      return {
       adding: true,
       fetching: false,
+      deletingSmurf: false,
+
       smurfs: [],
       error: ''
     };
@@ -71,6 +79,8 @@ export default  (state = initialState, action) => {
     return {
       adding: false,
       fetching: false,
+      deletingSmurf: false,
+
       smurfs: action.payload,
       error: ''
    };
@@ -80,6 +90,40 @@ export default  (state = initialState, action) => {
     return {
       adding: false,
       fetching: false,
+      deletingSmurf: false,
+
+      smurfs: [],
+      error: action.payload
+    };
+
+    case DELETING:
+     return {
+      adding: false,
+      fetching: false,
+      deletingSmurf: true,
+
+      smurfs: [],
+      error: ''
+    };
+
+
+    case DELETING_SUCCESS:
+    return {
+      adding: false,
+      fetching: false,
+      deletingSmurf: false,
+
+      smurfs: action.payload,
+      error: ''
+   };
+
+
+    case DELETING_FAILURE:
+    return {
+      adding: false,
+      fetching: false,
+      deletingSmurf: false,
+
       smurfs: [],
       error: action.payload
     };

@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 // import React from 'react';
 import { getSmurfs } from "../actions";
 import { addSmurff }  from "../actions";
+import DisplaySmurf from './displaySmurf';
 
 class App extends React.Component {
     // constructor() {
@@ -21,6 +22,11 @@ class App extends React.Component {
       // call our action
       this.props.getSmurfs();
      }
+
+    deleteSmurf = id => {
+      console.log(`in delete Smurf method. ID is ${id}`)
+    } //end deleteSmurf()
+
 
     addSmurf = e => {
         e.preventDefault();
@@ -51,7 +57,9 @@ class App extends React.Component {
           <div>         
             <div className="smurfList">
               { /*<CharacterList smurfs={this.props.smurfs} />*/}
-              { this.props.smurfs.map( smurf => { return <div><h2>{smurf.name}</h2> <p>Age: {smurf.age}</p><p>Height: {smurf.height}</p></div> } ) }
+             {/* { this.props.smurfs.map( smurf => { return <div><h2>{smurf.name}</h2> <p>Age: {smurf.age}</p><p>Height: {smurf.height}</p><p>ID: {smurf.id}</p><button onClick = {this.deleteSmurf(smurf.id)}>X</button></div> } ) }  */}
+              { this.props.smurfs.map( smurf => { return <DisplaySmurf name = {smurf.name} age = {smurf.age} height= {smurf.height} id = {smurf.id} />} ) }
+
             </div>
       
 
